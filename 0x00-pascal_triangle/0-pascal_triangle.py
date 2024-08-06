@@ -1,20 +1,32 @@
+#!/usr/bin/python3
+""" pascal triangle
+"""
+
+
 def pascal_triangle(n):
-    """
-    Generate Pascal's Triangle up to the nth row.
-    Returns an empty list if n <= 0.
+    """ returns pascal triangle
     """
     if n <= 0:
         return []
 
-    triangle = [[1]]  # Start with the first row
+    pasTran = []
 
-    for i in range(1, n):
-        prev_row = triangle[-1]
-        # Generate the next row
-        row = [1]  # Start with 1
-        for j in range(1, len(prev_row)):
-            row.append(prev_row[j - 1] + prev_row[j])
-        row.append(1)  # End with 1
-        triangle.append(row)
+    for i in range(n):
+        # first element
+        my_List = [1]
+        if i == 0:
+            pasTran.append(my_List)
+            continue
 
-    return triangle
+        k = i - 1
+        for j in range(len(pasTran[k])):
+            if j + 1 == len(pasTran[k]):
+                # last element
+                my_List.append(1)
+                break
+            # Add two previous values to get current next value
+            nextVal = pasTran[k][j] + pasTran[k][j + 1]
+            my_List.append(nextVal)
+        pasTran.append(my_List)
+
+    return pasTran
