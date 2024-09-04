@@ -1,21 +1,20 @@
 #!/usr/bin/python3
-"""
-Module that calculates the minimum number of .
-"""
+""" Module for 0-minoperations"""
 
 
 def minOperations(n):
-    """Returlt in exactly n H characters."""
-    if n <= 1:
+    """
+    minOperations
+    Gets fewest # of operations needed to result in exactly n H characters
+    """
+    if (n < 2):
         return 0
+    ops, root = 0, 2
+    while root <= n:
+        if n % root == 0:
+            ops += root
+            n = n / root
+            root -= 1
+        root += 1
+    return ops
 
-    operations = 0
-    divisor = 2
-
-    while n > 1:
-        while n % divisor == 0:
-            operations += divisor
-            n //= divisor
-        divisor += 1
-
-    return operations
